@@ -1,0 +1,28 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+        <ComponentGroup Id="WindowsServiceComponents" Directory="InstallFolder">
+            <Component>
+                <File Id="WinServiceFileExe"
+                    Name="$(var.ExecutableFileName)"
+                    KeyPath="yes"
+                    Source="$(var.ExecutableFileName)"/>
+                <ServiceInstall Id="WinServiceInstaller"
+                    Type="ownProcess"
+                    Vital="yes"
+                    Name="!(loc.ServiceName)"
+                    DisplayName="!(loc.ServiceName)"
+                    Description="!(loc.Description)"
+                    ErrorControl="normal"
+                    Account="LocalSystem"
+                    Start="auto"
+                    Interactive="no" />
+                <ServiceControl Id="WinServiceControl"
+                    Start="install"
+                    Stop="both"
+                    Remove="uninstall"
+                    Name="!(loc.ServiceName)"
+                    Wait="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

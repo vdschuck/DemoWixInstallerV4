@@ -1,0 +1,10 @@
+﻿<WixLocalization xmlns="http://wixtoolset.org/schemas/v4/wxl" Culture="en-US">
+
+    <String Id="ProductName" Value="$(var.ProductName)" />
+    <String Id="Company" Value="$(var.Company)" />
+    <String Id="Description" Value="$(var.Description)" />
+    <String Id="InstallFolderName" Value="$(var.InstallFolderName)" />
+    <String Id="DowngradeError" Value="A newer version of [ProductName] is already installed." />
+    <String Id="Language" Value="1033" />
+
+</WixLocalization>

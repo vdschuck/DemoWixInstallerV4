@@ -1,0 +1,34 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+    <!-- Define main package -->
+    <Package ProductCode="*"
+             UpgradeCode="$(var.UpgradeCode)"
+             Name="!(loc.ProductName)"
+             Language="!(loc.Language)"
+             Version="$(var.ProductVersion)"
+             Manufacturer="!(loc.Company)">
+
+        <!-- Provide package details -->
+        <SummaryInformation Manufacturer="!(loc.Company)" Description="!(loc.Description)" />
+
+        <!-- Downgrade error message -->
+        <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+        <!-- Include .cab file into .msi file -->
+        <MediaTemplate EmbedCab="yes" />
+
+        <Property Id="ARPURLINFOABOUT" Value="https://www.company.com/" />
+
+        <!-- Define main app icon -->
+        <!-- <Icon Id="icon.ico" SourceFile="some.ico" /> -->
+
+        <!-- Use the icon.ico icon for this installer (shows up in Add/Remove programs) -->
+        <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+        <Feature Id="MainFeatures">
+            <ComponentGroupRef Id="WindowsServiceComponents" />
+            <ComponentGroupRef Id="HarvestedComponents" />
+        </Feature>
+
+    </Package>
+</Wix>

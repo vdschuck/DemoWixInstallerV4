@@ -1,0 +1,35 @@
+﻿<Project Sdk="WixToolset.Sdk/4.0.0">
+  <PropertyGroup>
+    <OutputName>WebApiWindowService_v$(InformationalVersion)_$(RuntimeIdentifier)</OutputName>
+    <DefineConstants>
+            ProductVersion=$(Version);
+            ProductName=Web Api WindowService;
+            InstallFolderName=WebApiWindowService;
+            Description=$(Description);
+            Company=$(Company);
+            UpgradeCode={19EC9B2A-CE06-4CB1-81B9-CF6D67565C38};
+            ExecutableFileName=WebApiWindowService.exe;
+        </DefineConstants>
+    <HarvestDirectoryVerboseOutput>true</HarvestDirectoryVerboseOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <HarvestDirectory Include=".\obj\$(Configuration)\publish\WebApiWindowService">
+      <ComponentGroupName>HarvestedComponents</ComponentGroupName>
+      <DirectoryRefId>InstallFolder</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+      <Transforms>.\RemoveExeComponent.xslt</Transforms>
+    </HarvestDirectory>
+    <BindPath Include=".\obj\$(Configuration)\publish\WebApiWindowService" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RemoveExeComponent.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="4.0.0" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.0" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiWindowService\WebApiWindowService.csproj" Publish="true" />
+  </ItemGroup>
+</Project>
